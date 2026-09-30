@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slotsync signup</title>
+
+    <!-- tailwind css file attachment -->
+    <link href="./src/output.css" rel="stylesheet">
+
+    <!-- importing google font families -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body class="bg-apple-black flex flex-col justify-center items-center  w-screen h-screen font-jakarta gap-20">
+
+    <!-- logo -->
+    <h1 class="text-5xl text-light-white font-goldman text-center   w-full">SLOT SYNC</h1>
+
+
+    <!-- Sign Up form -->
+    <form class="flex flex-col justify-center items-center gap-10   w-full">
+
+        <!-- name -->
+        <div class="w-7/10 md:w-3/10 ">
+            <input type="text" name="userName" id="userName" required placeholder="Enter Name"
+                class="bg-light-yellow px-3 py-4  w-full text-xl rounded-2xl">
+        </div>
+
+        <!-- email -->
+        <div class="w-7/10 md:w-3/10 ">
+            <input type="email" name="email" id="userEmail" required placeholder="Enter Email"
+                class="bg-light-yellow px-3 py-4  w-full text-xl rounded-2xl">
+        </div>
+
+        <!-- password -->
+        <div class="w-7/10 md:w-3/10 ">
+            <input type="password" name="password" id="password" placeholder="Enter Password" required
+                class="bg-light-yellow px-3 py-4 text-xl  w-full rounded-2xl">
+        </div>
+
+        <!-- branch -->
+        <div class="w-7/10 md:w-3/10 ">
+            <select name="branch" id="userBranch" class="bg-light-yellow px-3 py-4 text-xl  w-full rounded-2xl">
+                <option value="computerScience">Computer Science</option>
+                <option value="civil">Civil</option>
+                <option value="informationTechnology">IT</option>
+                <option value="meta">Meta</option>
+                <option value="ai">AI</option>
+            </select>
+        </div>
+
+        <!-- role -->
+        <div class="w-7/10 md:w-3/10 ">
+            <select name="role" id="userRole" class="bg-light-yellow px-3 py-4 text-xl  w-full rounded-2xl">
+                <option value="student">Student</option>
+                <option value="convenor">Convenor</option>
+                <option value="Faculty">Faculty</option>
+            </select>
+        </div>
+
+
+        <!-- Sign Up button -->
+        <input type="button" value="Sign Up"
+            class=" border-2 border-light-yellow   px-9 py-4 text-xl rounded-2xl text-light-yellow hover:cursor-pointer hover:bg-light-yellow/30">
+
+        <!-- login to account -->
+        <div class="text-light-white text-xl w-full text-center">
+            already have an account? &nbsp; <button   class="font-bold hover:cursor-pointer" id="signInBtn">Sign In</button>
+        </div>
+
+    </form>
+
+
+
+<!-- js file -->
+<script src="scripts/signupScript.js"></script>
+
+</body>
+
+</html>

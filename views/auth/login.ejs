@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slotsync sign </title>
+
+    <!-- tailwind css file attachment -->
+    <link href="./src/output.css" rel="stylesheet">
+
+    <!-- importing google font families -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body class="bg-apple-black flex flex-col justify-center items-center  w-screen h-screen font-jakarta gap-20">
+
+    <!-- logo -->
+    <h1 class="text-5xl text-light-white font-goldman text-center   w-full">SLOT SYNC</h1>
+
+
+    <!-- login form -->
+    <form class="flex flex-col justify-center items-center gap-10   w-full">
+
+        <!-- email -->
+        <div class="w-7/10 md:w-3/10 ">
+            <input type="email" name="email" id="useremail" required placeholder="Enter Email"
+                class="bg-light-yellow px-3 py-4  w-full text-xl rounded-2xl">
+        </div>
+
+        <!-- password -->
+        <div class="w-7/10 md:w-3/10 ">
+            <input type="password" name="password" id="password" placeholder="Enter Password" required
+                class="bg-light-yellow px-3 py-4 text-xl  w-full rounded-2xl">
+        </div>
+
+        <!-- Sign in button -->
+        <input type="button" value="Sign In"
+            class=" border-2 border-light-yellow   px-9 py-4 text-xl rounded-2xl text-light-yellow hover:cursor-pointer hover:bg-light-yellow/30">
+
+        <!-- sign up and form new account -->
+        <div class="text-light-white text-xl w-full text-center">
+            don't have an account? &nbsp; <button  class="font-bold hover:cursor-pointer " id="signUpBtn">Sign up</button>
+        </div>
+
+    </form>
+
+
+
+
+<!-- js file -->
+<script src="scripts/loginScript.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* setting global css properties */
+@theme {
+    --color-apple-black : #1c1c1c;
+    --color-light-white : #EEF0F2;
+    --color-light-green : #BDBFBB;
+    --color-light-yellow : #ECEBE4;
+
+    --font-goldman:  "Goldman", sans-serif;
+    --font-jakarta: "Plus Jakarta Sans", sans-serif;
+
+}

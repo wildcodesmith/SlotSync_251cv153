@@ -1,0 +1,44 @@
+import Account from "../models/account.js";
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken';
+
+export const accessAccountFunc = async (req, res) => {
+    try {
+
+        //authenticating the user
+        //checking whether the user exists or not
+        const authAccount = await Account.findOne({ userEmail: req.body.userEmail });
+
+        //if username doesnot exits then send the error
+        if (!authAccount) {
+            res
+                .status(401)
+                .json({ 'error': 'invalid Credentials', 'status': 401 })
+            return;
+        }
+
+        //matching the  password
+        let authAccountPassword = authAccount.password;
+        let isPasswordCorrect = await bcrypt.compare(req.body.password, authAccountPassword)
+
+        //accessing secret key to generate jwt token
+        let SECRET_KEY = process.env.MASTER_KEY;
+        if (isPasswordCorrect) { //password matched
+            const token = jwt.sign({ userId: authAccount._id }, SECRET_KEY, { expiresIn: '1h' })
+            res.json({ token: token, redirect: '/dashboard' })
+
+        } else { //password didn't match
+            return res
+                .status(401)
+                .json({ 'error': "invalid credentials", status: 401 })
+
+        }
+
+
+    } catch (error) {
+        console.log('failed to login account', error)
+        res
+            .status(500)
+            .json({ 'error': "internal server error", status: 500 })
+    }
+}

@@ -6,8 +6,9 @@ const loginRouter = express.Router();
 
  
 loginRouter.get('/', (req,res) => {
-    res.render("auth/login.ejs")
+    res.render("auth/login.ejs") //sending login page
 })
-loginRouter.post('/', accessAccountFunc)
+
+loginRouter.post('/', accessAccountFunc) //post request to sign in
 
 export default loginRouter;

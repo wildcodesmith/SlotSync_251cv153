@@ -1,34 +1,3 @@
-// const token = localStorage.getItem('myAppToken');
-// if(!token){
-//     window.location.href = '/';
-// }else {
-//     try{
-//       async function getting_data() {
-//         let options = {
-//             method : 'GET',
-//             headers : {
-//                 'Authorization': 'Bearer ' + token
-//             }
-//         }
-
-//         let data = await fetch('/dashboardData', options)
-//         let response = await data.json();
-//         if (!data.ok) {
-                 
-//                 localStorage.removeItem('myAppToken');
-//                 window.location.href = '/'
-
-//         }else{
-//             alert("login in succesfully")
-//             alert(response.userName)
-//         }
-//     }
-//     getting_data()
-
-//     }catch(error){
-//         console.log('error loading dashboard', error)
-//     }
-// }
 
 async function getUserDashboard(){
      try {
@@ -40,7 +9,10 @@ async function getUserDashboard(){
         return;
     }
    
-        window.location.href = data.redirect
+        window.location.replace(data.redirect);
+        // can't use window.location.href = data.redirect 
+        // because in that case if the user logs in and enter the dashboard page and when dashboard send an api request to server to fetch the exact role based dashboard if the api falls then user will able to stay on dashboard page (small bug) so better use location.replace that will completly replace dashboard with the actual role based dashboard so if its fails then user's back button will lead to login page not the dashboard page
+        
     } catch (error) {
         console.log(error)
         window.location.href = '/';

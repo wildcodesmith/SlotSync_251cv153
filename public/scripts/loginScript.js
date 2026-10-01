@@ -1,3 +1,4 @@
+const loginForm = document.querySelector("#loginForm");
 const signUpBtn = document.querySelector("#signUpBtn");
 const signInBtn = document.querySelector("#signInBtn");
 const userEmail = document.querySelector('#userEmail');
@@ -11,7 +12,7 @@ signUpBtn.addEventListener("click" ,async (e)=>{
   
 })
 
-signInBtn.addEventListener('click', async (e)=>{
+loginForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
     const loginData = {
@@ -34,13 +35,6 @@ signInBtn.addEventListener('click', async (e)=>{
         }
         window.location.href = data.redirect;
 
-        // if(response.token){
-        //     // localStorage.setItem('myAppToken', response.token);
-        //     window.location.href = response.redirect;
-            
-        // }else{
-        //     console.log("login failed. Please try again later")
-        // }
 
     }
 })

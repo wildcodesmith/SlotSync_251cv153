@@ -1,3 +1,4 @@
+//Fetches data of the currently authenticated user and determines the appropriate dashboard based on the user's role.
 import express from "express";
 
 import { dashboardDataFetchingFunc } from "../controllers/dashboardDataController.js";

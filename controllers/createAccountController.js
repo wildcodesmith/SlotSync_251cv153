@@ -38,7 +38,7 @@ export const createAccountFunc = async (req, res) => {
         const userAccount = await Account.create(newUser);
 
         return res.status(201).json({
-            message: "Account created successfully",
+            message: " account  created successfully. Please log in.",
             status: 201
         });
 

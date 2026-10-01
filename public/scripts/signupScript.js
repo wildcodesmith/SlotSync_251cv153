@@ -1,3 +1,4 @@
+const signUpForm = document.querySelector("#signUpForm");
 const signInBtn = document.querySelector("#signInBtn");
 const signUpBtn = document.querySelector("#signUpBtn");
 const userName = document.querySelector("#userName");
@@ -7,40 +8,44 @@ const userBranch = document.querySelector("#userBranch");
 const userRole = document.querySelector("#userRole");
 
 
-signInBtn.addEventListener("click" ,async (e)=>{
+signInBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    
+
     //navigating to login page  as sign in button is clicked
-    window.location.href = '/'   
-  
+    window.location.href = '/'
+
 })
 
-signUpBtn.addEventListener('click' , async (e)=>{
+signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     let userInfo = {
-        userName : userName.value,
-        userEmail : userEmail.value,
-        password : password.value,
-        userBranch : userBranch.value,
-        userRole : userRole.value,
+        userName: userName.value,
+        userEmail: userEmail.value,
+        password: password.value,
+        userBranch: userBranch.value,
+        userRole: userRole.value,
     }
-    
-    if(userName.value && userEmail.value && password.value){
+
+    if (userName.value && userEmail.value && password.value) {
         options = {
-            method : 'POST',
-            headers :{
-                'Content-Type' : 'application/json'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            body : JSON.stringify(userInfo)
+            body: JSON.stringify(userInfo)
         }
 
-        let data = await fetch('/createAccount' , options);
+        let data = await fetch('/createAccount', options);
         let response = await data.json();
+        alert(response.message)
 
-        console.log(response)
+        if (data.ok) {
+
+            window.location.href = '/'
+        }
+
     }
-    
+
 })
 
- 

@@ -1,3 +1,5 @@
+//authenticating the user
+
 import Account from "../models/account.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
@@ -5,7 +7,7 @@ import jwt from 'jsonwebtoken';
 export const accessAccountFunc = async (req, res) => {
     try {
 
-        //authenticating the user
+     
         //checking whether the user exists or not
         const authAccount = await Account.findOne({ userEmail: req.body.userEmail });
 
@@ -31,15 +33,16 @@ export const accessAccountFunc = async (req, res) => {
                 },
                 SECRET_KEY,
                 { expiresIn: '1h' })
-            // res.json({ token: token, redirect: '/dashboard' })
+            
+                //storing the token in HTTPOnly cookie
             res.cookie("token", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
                 samSite: "lax",
                 maxAge: 60 * 60 * 1000
             })
-            return res.json({
-                redirect:"/dashboard"
+            return res.json({ //redirect user to the dashboard page
+                redirect:"/dashboard" 
             })
 
         } else { //password didn't match

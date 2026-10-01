@@ -10,6 +10,9 @@ import dashboardRouter from './routes/dashboardRoutes.js';
 import dashboardDataRouter from './routes/dashboardDataRoutes.js'
 import adminDashboardRouter from './routes/adminDashboardRoutes.js'
 import adminDashboardLogoutRouter from './routes/adminDashboardLogoutRoutes.js'
+import convenorDashboardRouter from './routes/convenorDashboardRoutes.js';
+import facultyDashboardRouter from './routes/facultyDashboardRoutes.js';
+import studentDashboardRouter from './routes/studentDashboardRoutes.js';
 
  
 const app = express();
@@ -42,6 +45,9 @@ app.use('/dashboard', dashboardRouter)
 app.use('/dashboardData', dashboardDataRouter)
 app.use('/adminDashboard', adminDashboardRouter)
 app.use('/adminDashboardLogout', adminDashboardLogoutRouter)
+app.use('/convenorDashboard',convenorDashboardRouter)
+app.use('/facultyDashboard',facultyDashboardRouter)
+app.use('/studentDashboard',studentDashboardRouter)
 
 
 app.listen(port, () => {

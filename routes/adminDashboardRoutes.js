@@ -1,3 +1,4 @@
+//route to control the dashboard of the admin
 import express from 'express';
 import { adminDashboardControllerFunc } from '../controllers/adminDashboardController.js';
 import verifyToken from '../controllers/middlewares/verifyToken.js';

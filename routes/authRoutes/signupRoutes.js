@@ -4,7 +4,7 @@ import { createAccountFunc } from '../../controllers/createAccountController.js'
 //creating sign up route
 const signupRouter = express.Router();
 signupRouter.get('/',(req,res) => {
-    res.render("auth/signup.ejs")
+    res.render("auth/signup.ejs") //sending signup page
 })
 
 //post request to create an account

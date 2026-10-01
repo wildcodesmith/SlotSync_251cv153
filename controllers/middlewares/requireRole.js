@@ -3,9 +3,10 @@
 const requiredRole = (requiredRole) => {
     return( req, res, next) => {
         if(req.user.userRole !== requiredRole){
-            return res.status(403).json({
-                 message: "Access forbidden"
-            })
+            // return res.status(403).json({
+            //      message: "Access forbidden"
+            // })
+            return res.render('unauthorizedPage.ejs')
         }
         next();
     }

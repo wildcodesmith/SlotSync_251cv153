@@ -1,6 +1,6 @@
-//verify the token to authenticate the user
+//verif the token to authenticate the user
 
-import  jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import 'dotenv/config';
 
 function verifyToken(req, res, next) {
@@ -10,7 +10,7 @@ function verifyToken(req, res, next) {
     if (!token) { //if no token is present then deny the access
         return res
             .status(401)
-            .json({ error: 'Access denied! Authorization required.' })
+            .render('unauthorizedPage.ejs') //Access denied! Authorization required.'
 
     }
     try {

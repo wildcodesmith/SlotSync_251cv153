@@ -50,6 +50,10 @@ app.use('/facultyDashboard',facultyDashboardRouter)
 app.use('/studentDashboard',studentDashboardRouter)
 
 
+app.use((req, res) => {
+    res.status(404).render("404.ejs");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

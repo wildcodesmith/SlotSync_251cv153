@@ -24,8 +24,23 @@ export const accessAccountFunc = async (req, res) => {
         //accessing secret key to generate jwt token
         let SECRET_KEY = process.env.MASTER_KEY;
         if (isPasswordCorrect) { //password matched
-            const token = jwt.sign({ userId: authAccount._id }, SECRET_KEY, { expiresIn: '1h' })
-            res.json({ token: token, redirect: '/dashboard' })
+            const token = jwt.sign(
+                { 
+                    userId: authAccount._id ,
+                    userRole: authAccount.userRole
+                },
+                SECRET_KEY,
+                { expiresIn: '1h' })
+            // res.json({ token: token, redirect: '/dashboard' })
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                samSite: "lax",
+                maxAge: 60 * 60 * 1000
+            })
+            return res.json({
+                redirect:"/dashboard"
+            })
 
         } else { //password didn't match
             return res

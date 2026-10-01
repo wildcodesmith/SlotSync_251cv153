@@ -1,5 +1,5 @@
 const signUpBtn = document.querySelector("#signUpBtn");
-const SignInBtn = document.querySelector("#signInBtn");
+const signInBtn = document.querySelector("#signInBtn");
 const userEmail = document.querySelector('#userEmail');
 const password = document.querySelector("#password")
 
@@ -26,16 +26,21 @@ signInBtn.addEventListener('click', async (e)=>{
             },
             body : JSON.stringify(loginData)
         }
-        let data = await fetch("/accessAccount", options);
-        let response = await data.json();
-
-        if(response.token){
-            localStorage.setItem('myAppToken', response.token);
-            window.location.href = response.redirect;
-            
-        }else{
-            console.log("login failed. Please try again later")
+        let response = await fetch("/accessAccount", options);
+        let data = await response.json();
+        if(!response.ok){
+            console.log(data.message);
+            return;
         }
+        window.location.href = data.redirect;
+
+        // if(response.token){
+        //     // localStorage.setItem('myAppToken', response.token);
+        //     window.location.href = response.redirect;
+            
+        // }else{
+        //     console.log("login failed. Please try again later")
+        // }
 
     }
 })

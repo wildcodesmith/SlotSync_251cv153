@@ -13,14 +13,21 @@ import adminDashboardLogoutRouter from './routes/adminDashboardLogoutRoutes.js'
 import convenorDashboardRouter from './routes/convenorDashboardRoutes.js';
 import facultyDashboardRouter from './routes/facultyDashboardRoutes.js';
 import studentDashboardRouter from './routes/studentDashboardRoutes.js';
+import fetchAdminAccountInfoRouter from './routes/fetchAdminAccountInfoRoutes.js';
+import fetchAdminDashboardInfoRouter from './routes/fetchAdminDashboardInfoRoutes.js';
+import fetchBuildingInfoRouter from './routes/fetchBuildingInfoRoutes.js';
+import filterAdminBuildingsRouter from './routes/filterAdminBuildingsRoutes.js';
+import addNewBuildingRouter from './routes/addNewBuildingRoutes.js';
+import deleteFacilityRouter from './routes/deleteFacilityRoutes.js';
 
- 
 const app = express();
 const port = 3000;
 
 //mongoose database setup 
 mongoose.connect(process.env.MONGOOSE_STRING)
 import Account from './models/account.js';
+import Building from './models/admin/facilities/building.js';
+import Room from './models/admin/facilities/room.js';
 
 
 //middlewares
@@ -48,6 +55,12 @@ app.use('/adminDashboardLogout', adminDashboardLogoutRouter)
 app.use('/convenorDashboard',convenorDashboardRouter)
 app.use('/facultyDashboard',facultyDashboardRouter)
 app.use('/studentDashboard',studentDashboardRouter)
+app.use('/fetchAdminAccountInfo', fetchAdminAccountInfoRouter)
+app.use('/fetchAdminDashboardInfo', fetchAdminDashboardInfoRouter)
+app.use('/fetchBuildingInfo', fetchBuildingInfoRouter)
+app.use('/filterAdminBuildings', filterAdminBuildingsRouter)
+app.use('/addNewBuilding', addNewBuildingRouter)
+app.use('/deleteFacility', deleteFacilityRouter)
 
 
 app.use((req, res) => {

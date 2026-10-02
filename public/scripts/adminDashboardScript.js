@@ -7,9 +7,11 @@ const facilites = document.querySelector("#facilites")
 const allBookings = document.querySelector("#allBookings")
 const users = document.querySelector("#users")
 
+import { createFacilitiesSection, createFacilityCard, showDeleteConfirmation ,deleteFacilityFunc , showFacilityForm , closeFacilityForm, postNewFacility } from "./adminDashboardFacilities.js"
+
 //function to dynamically create account card
-const createAccountCard = (name , email, role, department) =>{
- 
+const createAccountCard = (name, email, role, department) => {
+
     sectionContent.innerHTML = `
     
     <div
@@ -41,35 +43,35 @@ const createAccountCard = (name , email, role, department) =>{
         </div>
 
     `
- 
+
 
     //logout btn logic
     const logoutBtn = document.querySelector("#logoutBtn")
     logoutBtn.addEventListener("click", async (e) => {
-    e.preventDefault()
-    let response = await fetch('/adminDashboardLogout' , {
-        method : "POST"
-    } )
-    window.location.href = '/';
-})
+        e.preventDefault()
+        let response = await fetch('/adminDashboardLogout', {
+            method: "POST"
+        })
+        window.location.href = '/';
+    })
 }
 
 //function to dynamically create notification card
-const createNotificationCard = () =>{
- 
+const createNotificationCard = () => {
+
     sectionContent.innerHTML = `
     
     <div class="w-xs text-apple-black font-medium tracking-wide bg-light-yellow rounded-xl  p-5 text-center flex flex-col justify-center items-center gap-5 ">
             <h1 class="text-3xl pb-2 font-bold border-b w-full border-apple-black">Notifications</h1>
 
     `
- 
+
 
 }
 
 
 //function to dynamically create dashboard card
-const createDashboardCard = () =>{
+const createDashboardCard = () => {
 
     sectionContent.innerHTML = `
    
@@ -103,7 +105,7 @@ const createDashboardCard = () =>{
 
 
 //function to dynamically create users card
-const createUsersCard = () =>{
+const createUsersCard = () => {
 
     sectionContent.innerHTML = `
    
@@ -116,7 +118,7 @@ const createUsersCard = () =>{
 
 }
 //function to dynamically create allBooking card
-const createAllBookingsCard= () =>{
+const createAllBookingsCard = () => {
 
     sectionContent.innerHTML = `
    
@@ -128,61 +130,65 @@ const createAllBookingsCard= () =>{
     `
 
 }
-//function to dynamically create facilities card
-const createFacilitiesCard = () =>{
 
-    sectionContent.innerHTML = `
-   
-    
-         <div class="w-xs text-apple-black font-medium tracking-wide bg-light-yellow rounded-xl  p-5 text-center flex flex-col justify-center items-center gap-5 ">
-            <h1 class="text-3xl pb-2 font-bold border-b w-full border-apple-black">Facilities</h1>
-        </div>
-
-    `
-
-}
 
 
 //account nav bar
-accountNav.addEventListener("click", ()=>{
- 
-    createAccountCard('caroline', 'caroline@gmail.com', 'administrator', 'cs' )
+accountNav.addEventListener("click", async () => {
+
+    //fetch data from database
+    let response = await fetch('/fetchAdminAccountInfo')
+    let data = await response.json()
+    if (response.ok) {
+
+        // console.log(data)
+        createAccountCard(data.userName, data.userEmail, data.userRole, data.userBranch)
+    } else {
+
+        console.log(data)
+    }
+
 })
 
 //notification nav bar
-notificationNav.addEventListener("click", ()=>{
- 
+notificationNav.addEventListener("click", () => {
+
     createNotificationCard()
 })
 //dashboard nav bar
-dashboard.addEventListener("click", ()=>{
+dashboard.addEventListener("click", async () => {
 
-    createDashboardCard()
- 
+    //fetch data from database
+    let response = await fetch('/fetchAdminDashboardInfo')
+    let data = await response.json()
+    if (response.ok) {
+
+        console.log(data)
+        createDashboardCard()
+    } else {
+
+        console.log(data)
+    }
+
+
 })
 
 //users nav bar
-users.addEventListener("click", ()=>{
+users.addEventListener("click", () => {
 
     createUsersCard()
- 
+
 })
 
 //allBookings nav bar
-allBookings.addEventListener("click", ()=>{
+allBookings.addEventListener("click", () => {
 
     createAllBookingsCard()
- 
+
 })
 
-//Facilites nav bar
-facilites.addEventListener("click", ()=>{
 
-    createFacilitiesCard()
- 
-})
 
 //by default 
 createDashboardCard()
-
 

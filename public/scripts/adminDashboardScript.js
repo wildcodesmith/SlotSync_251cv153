@@ -7,7 +7,11 @@ const facilites = document.querySelector("#facilites")
 const allBookings = document.querySelector("#allBookings")
 const users = document.querySelector("#users")
 
-import { createFacilitiesSection, createFacilityCard, showDeleteConfirmation ,deleteFacilityFunc , showFacilityForm , closeFacilityForm, postNewFacility } from "./adminDashboardFacilities.js"
+import { showFacilites } from "./adminDashboardFacilities.js"
+import { showUsers } from "./adminDashboardUsers.js"
+import { showNotifications } from "./adminDashboardNotifications.js"
+import { showBookings } from "./adminDashboardBookings.js";
+import { showDashboard } from "./adminDashboardSection.js"
 
 //function to dynamically create account card
 const createAccountCard = (name, email, role, department) => {
@@ -56,80 +60,12 @@ const createAccountCard = (name, email, role, department) => {
     })
 }
 
-//function to dynamically create notification card
-const createNotificationCard = () => {
 
-    sectionContent.innerHTML = `
-    
-    <div class="w-xs text-apple-black font-medium tracking-wide bg-light-yellow rounded-xl  p-5 text-center flex flex-col justify-center items-center gap-5 ">
-            <h1 class="text-3xl pb-2 font-bold border-b w-full border-apple-black">Notifications</h1>
+//dashboard section
+dashboard.addEventListener('click', showDashboard)
 
-    `
-
-
-}
-
-
-//function to dynamically create dashboard card
-const createDashboardCard = () => {
-
-    sectionContent.innerHTML = `
-   
-    
-        <div class="w-xs h-xs   p-5 text-center text-black  bg-light-yellow rounded-xl">
-            <div>Total Facilites</div>
-            <div>12</div>
-         
-    
-        </div>
-        <div class="w-xs text-black bg-light-yellow rounded-xl   p-5 text-center">
-            <div>Total Users</div>
-            <div>143</div>
- 
-        </div>
-    
-        <div class="w-xs text-black  bg-light-yellow rounded-xl    p-5 text-center">
-            <div>Today's Bookings</div>
-            <div>5</div>
- 
-        </div>
-        <div class="w-xs text-black   bg-light-yellow rounded-xl    p-5 text-center">
-            <div>Pending Requests</div>
-            <div>3</div>
- 
-        </div>
-
-    `
-
-}
-
-
-//function to dynamically create users card
-const createUsersCard = () => {
-
-    sectionContent.innerHTML = `
-   
-    
-         <div class="w-xs text-apple-black font-medium tracking-wide bg-light-yellow rounded-xl  p-5 text-center flex flex-col justify-center items-center gap-5 ">
-            <h1 class="text-3xl pb-2 font-bold border-b w-full border-apple-black">Users</h1>
-        </div>
-
-    `
-
-}
-//function to dynamically create allBooking card
-const createAllBookingsCard = () => {
-
-    sectionContent.innerHTML = `
-   
-    
-         <div class="w-xs text-apple-black font-medium tracking-wide bg-light-yellow rounded-xl  p-5 text-center flex flex-col justify-center items-center gap-5 ">
-            <h1 class="text-3xl pb-2 font-bold border-b w-full border-apple-black">All Bookings</h1>
-        </div>
-
-    `
-
-}
+//making dashboard page as landing page so when admin sign in admin lands on dashboard
+dashboard.click();
 
 
 
@@ -153,42 +89,39 @@ accountNav.addEventListener("click", async () => {
 //notification nav bar
 notificationNav.addEventListener("click", () => {
 
-    createNotificationCard()
+    showNotifications()
 })
 //dashboard nav bar
-dashboard.addEventListener("click", async () => {
+// dashboard.addEventListener("click", async () => {
 
-    //fetch data from database
-    let response = await fetch('/fetchAdminDashboardInfo')
-    let data = await response.json()
-    if (response.ok) {
+//     //fetch data from database
+//     let response = await fetch('/fetchAdminDashboardInfo')
+//     let data = await response.json()
+//     if (response.ok) {
 
-        console.log(data)
-        createDashboardCard()
-    } else {
+//         console.log(data)
+//         createDashboardCard()
+//     } else {
 
-        console.log(data)
-    }
+//         console.log(data)
+//     }
 
 
-})
+// })
 
-//users nav bar
+//users section
 users.addEventListener("click", () => {
-
-    createUsersCard()
-
+    showUsers()
 })
 
-//allBookings nav bar
-allBookings.addEventListener("click", () => {
-
-    createAllBookingsCard()
-
+//facilities section
+facilites.addEventListener("click", ()=>{
+    showFacilites();
 })
 
 
 
-//by default 
-createDashboardCard()
+//bookings section
+allBookings.addEventListener("click", showBookings)
+
 

@@ -3,7 +3,7 @@ const facilites = document.querySelector("#facilites");
 
 
 //Facilites nav bar
-facilites.addEventListener("click", async () => {
+export const showFacilites = async  () => {
 
 
     //clear the section content
@@ -29,7 +29,7 @@ facilites.addEventListener("click", async () => {
     })
 
 
-})
+}
 
 
 //function to dynamically create facilities section

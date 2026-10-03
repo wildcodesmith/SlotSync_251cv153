@@ -24,7 +24,12 @@ import updateRoomRouter from './routes/updateRoomRoutes.js';
 import deleteRoomRouter from './routes/deleteRoomRoutes.js';
 import addRoomRouter from './routes/addRoomRoutes.js';
 import filterAdminRoomsRouter from './routes/filterAdminRoomsRoutes.js';
-
+import fetchUsersRouter from "./routes/fetchUsersRoutes.js";
+import filterUsersRouter from "./routes/filterUsersRoutes.js";
+import fetchPendingNotificationsRouter from './routes/fetchPendingNotificationsRoutes.js';
+import respondToBookingRouter from './routes/respondToBookingRoutes.js';
+import fetchAllBookingsRouter from './routes/fetchAllBookingsRoutes.js';
+import deleteUserRouter from './routes/deleteUserRoutes.js';
 
 const app = express();
 const port = 3000;
@@ -34,6 +39,9 @@ mongoose.connect(process.env.MONGOOSE_STRING)
 import Account from './models/account.js';
 import Building from './models/admin/facilities/building.js';
 import Room from './models/admin/facilities/room.js';
+import PendingNotification from './models/admin/pendingNotification.js';
+import RespondedNotification from './models/admin/respondedNotification.js';
+import Booking from './models/admin/booking.js';
 
 
 //middlewares
@@ -73,7 +81,12 @@ app.use('/deleteRoom',deleteRoomRouter)
 app.use('/deleteRoom',deleteRoomRouter)
 app.use('/addRoom',addRoomRouter)
 app.use('/filterAdminRooms',filterAdminRoomsRouter)
-
+app.use("/fetchUsers", fetchUsersRouter);
+app.use("/filterUsers", filterUsersRouter);
+app.use("/fetchPendingNotifications", fetchPendingNotificationsRouter);
+app.use("/respondToBooking", respondToBookingRouter);
+app.use("/fetchAllBookings", fetchAllBookingsRouter);
+app.use("/deleteUser", deleteUserRouter)
 
 
 app.use((req, res) => {

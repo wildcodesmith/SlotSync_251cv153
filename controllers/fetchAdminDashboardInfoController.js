@@ -1,22 +1,49 @@
- 
+import Account from "../models/account.js"
+import Room from "../models/admin/facilities/room.js"
+import Booking from "../models/admin/booking.js"
+import PendingNotification from "../models/admin/pendingNotification.js"
+
+
 export const fetchAdminDashboardInfoController  = async (req,res) => {
      
-    // try {
-    //     let userData = await AdminDashboard.findById(req.user.userId)
-    //     console.log(userData.userEmail)
-    //     let userInfo = {
-    //         userName : userData.userName,
-    //         userEmail : userData.userEmail,
-    //         userBranch : userData.userBranch,
-    //         userRole : userData.userRole
-    //     }
+    try {
 
-    //    return res.status(200).json(userInfo)
+        //total users
+        const totalUsers = await Room.countDocuments({ 
+            userRole : {$ne : "admin"}
+         })
 
-    // } catch (error) {
-    //     console.log(error)
-    //     res.status(500).json({message : "Internal server error"})
-    // }
+         // Total facilities
+        const totalFacilities = await Room.countDocuments();
 
-    res.status(200).json({message : 'dashboard work in progress....'})
+
+        // Today's date
+        const today = new Date().toISOString().split("T")[0];
+
+
+        // Today's bookings
+        const todaysBookings = await Booking.countDocuments({
+            date: today
+        });
+
+
+        // Pending booking requests
+        const pendingRequests =
+            await PendingNotification.countDocuments();
+
+
+        res.status(200).json({
+
+            totalFacilities,
+            totalUsers,
+            todaysBookings,
+            pendingRequests
+
+        });
+        
+    } catch (error) {
+        res.status(500).json({message : "Failed to Info. Internal Server Error"})
+    }   
+
+
 }

@@ -1,0 +1,78 @@
+<!-- main content section -->
+<section class="  w-full flex-1 flex justify-center items-center flex-wrap  gap-5" id="sectionContent">
+
+
+    <!-- rooms section container => rooms + navigation bar -->
+    <div class=" bg-light-yellow my-25 w-full lg:w-7/10 gap-5 m-auto text-apple-black rounded-2xl">
+
+        <!-- nav filter bar inside the rooms section  => nav bar -->
+        <h2 class="text-center text-2xl p-5 font-bold text-light-yellow tracking-wider bg-black/93 rounded-t-2xl">
+            Building Name </h2>
+
+        <form
+            class="bg-light-green flex flex-row flex-1 flex-wrap  justify-between items-center text-apple-black font-semibold text-lg tracking-wide p-2">
+            <!-- type of facility -->
+            <div class="flex gap-5 items-center justify-between p-2">
+                <label for="roomType">Type : </label>
+                <select name="roomType" id="roomType" required
+                    class="border border-apple-black/40 p-2 bg-light-white rounded-xl">
+                    <option value="all">All</option>
+                    <option value="classroom">Classroom</option>
+                    <option value="lecture">Lecture Hall</option>
+                    <option value="lab">Lab</option>
+                    <option value="seminar">Seminar Hall</option>
+                    <option value="auditorium">Auditorium</option>
+                </select>
+            </div>
+
+            <div class="flex gap-5 items-center justify-between p-2">
+                <label for="roomStatus">Status : </label>
+                <select name="roomStatus" id="roomStatus" required
+                    class="border border-apple-black/40 p-2 bg-light-white rounded-xl">
+                    <option value="all">All</option>
+                    <option value="available">Available</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+
+            <!-- capacity of rooms filter -->
+            <div class="flex gap-5 items-center justify-between p-2">
+                <label for="capacity">Capacity : </label>
+                <input type="number" name="capacity" min="1" placeholder="Min capacity" required
+                    class="border border-apple-black/40 px-2  py-2 bg-light-white rounded-xl w-37">
+            </div>
+
+            <!-- add room button -->
+            <button id="addRoom"
+                class="bg-apple-black text-white font-bold px-4 py-2 rounded-xl tracking-wider hover:bg-apple-black/90 hover:cursor-pointer mx-4">
+                + Add Room </button>
+        </form>
+
+        <!-- room cards section => rooms -->
+        <article class="flex  justify-center items-center flex-1 flex-wrap gap-8 p-5 tracking-wide ">
+
+            <!--a particular room -->
+            <div
+                class=" bg-light-white border border-apple-black/10  w-fit p-4 flex flex-col justify-center items-center gap-2 rounded-xl">
+                <h3 class="text-2xl font-bold w-full border-apple-black/40 border-b text-center">
+                    CR-1</h3>
+                <p>Capacity : 40</p>
+                <p>Type : classroom</p>
+                <p>Status : available</p>
+
+                <button data-building-id="${building.buildingId}"
+                    class="viewRoomsBtn bg-light-yellow border  border-apple-black/20 px-3 py-1 font-medium rounded-xl hover:bg-apple-black hover:cursor-pointer hover:text-light-white ">Book
+                    Room &rarr; </button>
+                <button data-building-id="${building.buildingId}"
+                    class="deleteFacilityBtn hover:cursor-pointer border mt-5 border-red-500/40 text-red-600 px-3 py-1 rounded-xl hover:bg-red-500 hover:text-white">
+                    Delete
+                </button>
+            </div>
+
+
+        </article>
+
+
+    </div>
+</section>

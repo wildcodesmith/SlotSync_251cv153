@@ -11,7 +11,7 @@ export const filterAdminBuildingsController = async (req, res) => {
              buildings = await Building.find({"buildingType" : req.body.facilityType});
         }
 
-       
+
 
         const buildingData = await Promise.all(
             buildings.map(async (building) => {
@@ -21,6 +21,7 @@ export const filterAdminBuildingsController = async (req, res) => {
                 });
 
                 return {
+                    buildingId: building._id.toString(),
                     buildingName: building.buildingName,
                     buildingType: building.buildingType,
                     totalRooms: totalRooms

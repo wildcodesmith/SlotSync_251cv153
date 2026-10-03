@@ -19,6 +19,12 @@ import fetchBuildingInfoRouter from './routes/fetchBuildingInfoRoutes.js';
 import filterAdminBuildingsRouter from './routes/filterAdminBuildingsRoutes.js';
 import addNewBuildingRouter from './routes/addNewBuildingRoutes.js';
 import deleteFacilityRouter from './routes/deleteFacilityRoutes.js';
+import getBuildingRoomsRouter from './routes/getBuildingRoomsRoutes.js';
+import updateRoomRouter from './routes/updateRoomRoutes.js';
+import deleteRoomRouter from './routes/deleteRoomRoutes.js';
+import addRoomRouter from './routes/addRoomRoutes.js';
+import filterAdminRoomsRouter from './routes/filterAdminRoomsRoutes.js';
+
 
 const app = express();
 const port = 3000;
@@ -61,6 +67,13 @@ app.use('/fetchBuildingInfo', fetchBuildingInfoRouter)
 app.use('/filterAdminBuildings', filterAdminBuildingsRouter)
 app.use('/addNewBuilding', addNewBuildingRouter)
 app.use('/deleteFacility', deleteFacilityRouter)
+app.use('/getBuildingRooms', getBuildingRoomsRouter)
+app.use('/updateRoom', updateRoomRouter)
+app.use('/deleteRoom',deleteRoomRouter)
+app.use('/deleteRoom',deleteRoomRouter)
+app.use('/addRoom',addRoomRouter)
+app.use('/filterAdminRooms',filterAdminRoomsRouter)
+
 
 
 app.use((req, res) => {

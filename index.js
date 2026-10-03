@@ -31,6 +31,10 @@ import respondToBookingRouter from './routes/respondToBookingRoutes.js';
 import fetchAllBookingsRouter from './routes/fetchAllBookingsRoutes.js';
 import deleteUserRouter from './routes/deleteUserRoutes.js';
 
+import fetchCoordinatorAccountInfoRouter from './routes/fetchCoordinatorAccountInfoRoutes.js';
+import coordinatorPageLogoutRouter from './routes/coordinatorPageLogoutRoutes.js';
+
+
 const app = express();
 const port = 3000;
 
@@ -87,6 +91,9 @@ app.use("/fetchPendingNotifications", fetchPendingNotificationsRouter);
 app.use("/respondToBooking", respondToBookingRouter);
 app.use("/fetchAllBookings", fetchAllBookingsRouter);
 app.use("/deleteUser", deleteUserRouter)
+app.use("/fetchCoordinatorAccountInfo", fetchCoordinatorAccountInfoRouter)
+app.use("/coordinatorPageLogout", coordinatorPageLogoutRouter)
+
 
 
 app.use((req, res) => {

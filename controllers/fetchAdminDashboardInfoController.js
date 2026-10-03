@@ -9,7 +9,7 @@ export const fetchAdminDashboardInfoController  = async (req,res) => {
     try {
 
         //total users
-        const totalUsers = await Room.countDocuments({ 
+        const totalUsers = await Account.countDocuments({ 
             userRole : {$ne : "admin"}
          })
 

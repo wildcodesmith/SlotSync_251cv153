@@ -1,3 +1,3 @@
 export const convenorDashboardControllerFunc = (req,res) =>{
-    res.render('convenorDashboard.ejs')
+    res.render('coordinatorPage.ejs')
 }

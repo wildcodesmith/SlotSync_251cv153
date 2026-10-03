@@ -1,11 +1,11 @@
 //route to logout the user 
 import express from 'express'
-const adminDashboardLogoutRouter = express.Router();
-import requiredRole from "../controllers/middlewares/requireRole.js";
+import requireCoordinatorRole from '../controllers/middlewares/requireCoordinatorRole.js';
 import verifyToken from "../controllers/middlewares/verifyToken.js";
 
+const coordinatorPageLogoutRouter = express.Router();
  
- adminDashboardLogoutRouter.post("/", verifyToken,requiredRole("admin"),(req, res) => {
+ coordinatorPageLogoutRouter.post("/", verifyToken,requireCoordinatorRole,(req, res) => {
 
     //clearing the token stored in HTTPOnly cookie
     res.clearCookie("token");
@@ -15,4 +15,4 @@ import verifyToken from "../controllers/middlewares/verifyToken.js";
     });
 });
 
-export default adminDashboardLogoutRouter;
+export default coordinatorPageLogoutRouter;

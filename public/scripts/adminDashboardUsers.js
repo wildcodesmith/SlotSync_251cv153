@@ -15,6 +15,7 @@ export const createUsersSection = () => {
         "text-apple-black"
     );
 
+    //userSection nav bar filter for userRole
     UsersSection.innerHTML = `
 
         <div class="bg-light-green flex flex-row flex-wrap justify-between items-center font-semibold text-lg tracking-wide p-2">
@@ -24,6 +25,7 @@ export const createUsersSection = () => {
 
                 <option value="all">All</option>
                 <option value="student">Student</option>
+                <option value="convenor">Convenor</option>
                 <option value="faculty">Faculty</option>
 
             </select>

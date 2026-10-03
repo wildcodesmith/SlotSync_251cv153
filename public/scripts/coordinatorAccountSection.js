@@ -1,36 +1,21 @@
+export const showAccount = async () =>{
 
-const sectionContent = document.querySelector("#sectionContent")
-const accountNav = document.querySelector("#accountNav")
-const notificationNav = document.querySelector("#notificationNav")
-const dashboard = document.querySelector("#dashboard")
-const facilites = document.querySelector("#facilites")
-const allBookings = document.querySelector("#allBookings")
-const users = document.querySelector("#users")
-
-import { showFacilites } from "./adminDashboardFacilities.js"
-import { showUsers } from "./adminDashboardUsers.js"
-import { showNotifications } from "./adminDashboardNotifications.js"
-import { showBookings } from "./adminDashboardBookings.js";
-import { showDashboard } from "./adminDashboardSection.js"
-
-
-
-//account nav bar
-accountNav.addEventListener("click", async () => {
-
-    //fetch data from database
-    let response = await fetch('/fetchAdminAccountInfo')
+    // fetch data from database
+    let response = await fetch('/fetchCoordinatorAccountInfo')
     let data = await response.json()
     if (response.ok) {
 
-        // console.log(data)
+        console.log(data)
         createAccountCard(data.userName, data.userEmail, data.userRole, data.userBranch)
+
     } else {
 
         console.log(data)
     }
+        // createAccountCard("a","d" ,"e",'d')
 
-})
+}
+
 
 //function to dynamically create account card
 const createAccountCard = (name, email, role, department) => {
@@ -68,45 +53,13 @@ const createAccountCard = (name, email, role, department) => {
     `
 
 
-    //logout btn logic
+    // logout btn logic
     const logoutBtn = document.querySelector("#logoutBtn")
     logoutBtn.addEventListener("click", async (e) => {
         e.preventDefault()
-        let response = await fetch('/adminDashboardLogout', {
+        let response = await fetch('/coordinatorPageLogout', {
             method: "POST"
         })
         window.location.href = '/';
     })
 }
-
-
-//dashboard section
-dashboard.addEventListener('click', showDashboard)
-
-//making dashboard page as landing page so when admin sign in admin lands on dashboard
-dashboard.click();
-
-
-
-//notification nav bar
-notificationNav.addEventListener("click", () => {
-
-    showNotifications()
-})
-
-//users section
-users.addEventListener("click", () => {
-    showUsers()
-})
-
-//facilities section
-facilites.addEventListener("click", ()=>{
-    showFacilites();
-})
-
-
-
-//bookings section
-allBookings.addEventListener("click", showBookings)
-
-

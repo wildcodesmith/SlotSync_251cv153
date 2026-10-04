@@ -1,3 +1,3 @@
 export const studentDashboardControllerFunc = (req,res) =>{
-    res.render('studentDashboard.ejs')
+    res.render('studentPage.ejs')
 }

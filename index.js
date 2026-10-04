@@ -40,6 +40,12 @@ import bookRoomRequestRouter from './routes/bookRoomRequestRoutes.js';
 import fetchMyBookingRequestsRouter from './routes/fetchMyBookingRequestsRoutes.js';
 import coordinatorDashboardDataRouter from './routes/coordinatorDashboardDataRoutes.js';
 
+import fetchStudentDashboardDataRouter from './routes/fetchStudentDashboardDataRoutes.js';
+import fetchStudentAccountInfoRouter from './routes/fetchStudentAccountInfoRoutes.js';
+import studentPageLogoutRouter from './routes/studentPageLogoutRoutes.js';
+
+
+
 const app = express();
 const port = 3000;
 
@@ -104,7 +110,12 @@ app.use("/markAsRead", markAsReadRouter)
 app.use("/fetchMyBookings", fetchMyBookingsRouter)
 app.use("/bookRoomRequest", bookRoomRequestRouter)
 app.use("/fetchMyBookingRequests", fetchMyBookingRequestsRouter)
-app.use("/fetchCoordinatorDashboardData", coordinatorDashboardDataRouter  )
+app.use("/fetchCoordinatorDashboardData", coordinatorDashboardDataRouter)
+
+app.use("/fetchStudentDashboardData", fetchStudentDashboardDataRouter)
+app.use("/fetchStudentAccountInfo", fetchStudentAccountInfoRouter)
+app.use("/studentPageLogout", studentPageLogoutRouter)
+
 
 
 

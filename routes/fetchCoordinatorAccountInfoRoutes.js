@@ -5,6 +5,6 @@ import { fetchCoordinatorAccountInfo } from "../controllers/fetchCoordinatorAcco
 
 const fetchCoordinatorAccountInfoRouter = express.Router()
 
-fetchCoordinatorAccountInfoRouter.get('/',verifyToken,fetchCoordinatorAccountInfo)
+fetchCoordinatorAccountInfoRouter.get('/',verifyToken,requiredCoordinatorRole,fetchCoordinatorAccountInfo)
 
 export default fetchCoordinatorAccountInfoRouter;

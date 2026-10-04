@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+
+
+    <!-- tailwind css file attachment -->
+    <link href="./src/output.css" rel="stylesheet">
+
+    <!-- importing google font families -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body class="bg-[color-mix(in_oklab,#161515_98%,transparent)] text-light-yellow flex flex-col h-screen">
+
+
+    <!-- navbar -->
+    <nav class="flex flex-row justify-between gap-5 p-5 fixed w-full top-0 bg-[#0000001a]">
+        <div id="navLogo">
+            <div class="text-2xl font-goldman">SLOT SYNC</div>
+        </div>
+        <div id="navMenu" class="flex flex-row justify-between gap-10">
+            <div class="hover:cursor-pointer" id="accountNav">account</div>
+            
+        </div>
+    </nav>
+
+    <!-- header links -->
+    <header class="flex w-full flex-row fixed justify-center items-center gap-6 text-xl flex-wrap  top-20">
+
+        <div id="dashboard"
+            class="border bg-black border-[#ffffff78] px-3 py-1 rounded-xl shadow-[0px_11px_8px_0px_black] hover:bg-light-white hover:text-apple-black hover:cursor-pointer">
+            Dashboard</div>
+        <div id="facilites"
+            class="border bg-black border-[#ffffff78] px-3 py-1 rounded-xl shadow-[0px_11px_8px_0px_black] hover:bg-light-white hover:text-apple-black hover:cursor-pointer">
+            Facilites</div>
+    </header>
+
+
+    <!-- main content section -->
+    <section class="  w-full flex-1 flex justify-center items-center flex-wrap  gap-5" id="sectionContent">
+
+ 
+    </section>
+
+
+
+
+
+
+    <script type="module" src="scripts/studentScript.js"></script>
+
+
+
+</body>
+
+</html>

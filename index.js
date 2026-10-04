@@ -33,6 +33,9 @@ import deleteUserRouter from './routes/deleteUserRoutes.js';
 
 import fetchCoordinatorAccountInfoRouter from './routes/fetchCoordinatorAccountInfoRoutes.js';
 import coordinatorPageLogoutRouter from './routes/coordinatorPageLogoutRoutes.js';
+import fetchRespondedNotificationsRouter from './routes/fetchRespondedNotificationsRoutes.js';
+import markAsReadRouter from './routes/markAsReadRoutes.js';
+import fetchMyBookingsRouter from './routes/fetchMyBookngsRoutes.js';
 
 
 const app = express();
@@ -93,6 +96,10 @@ app.use("/fetchAllBookings", fetchAllBookingsRouter);
 app.use("/deleteUser", deleteUserRouter)
 app.use("/fetchCoordinatorAccountInfo", fetchCoordinatorAccountInfoRouter)
 app.use("/coordinatorPageLogout", coordinatorPageLogoutRouter)
+app.use("/fetchRespondedNotifications", fetchRespondedNotificationsRouter)
+app.use("/markAsRead", markAsReadRouter)
+app.use("/fetchMyBookings", fetchMyBookingsRouter)
+
 
 
 

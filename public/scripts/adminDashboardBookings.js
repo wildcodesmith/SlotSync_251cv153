@@ -58,19 +58,24 @@ export const showBookings = async () => {
         }
 
 
-        if (data.length === 0) {
+         //if no data is present
+    if (data.length === 0) {
+        sectionContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center py-20">
 
-            bookingsContainer.innerHTML = `
+            <h2 class="text-2xl font-bold">
+                No Bookings 
+            </h2>
 
-                <p class="text-center text-lg py-10">
-                    No bookings found.
-                </p>
+            <p class="mt-2 text-light-white/60">
+                No bookings are there
+            </p>
 
-            `;
+        </div>
+    `;
 
-            return;
-
-        }
+        return;
+    }
 
 
         data.forEach(booking => {

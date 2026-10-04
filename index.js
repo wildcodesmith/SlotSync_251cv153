@@ -36,7 +36,9 @@ import coordinatorPageLogoutRouter from './routes/coordinatorPageLogoutRoutes.js
 import fetchRespondedNotificationsRouter from './routes/fetchRespondedNotificationsRoutes.js';
 import markAsReadRouter from './routes/markAsReadRoutes.js';
 import fetchMyBookingsRouter from './routes/fetchMyBookngsRoutes.js';
-
+import bookRoomRequestRouter from './routes/bookRoomRequestRoutes.js';
+import fetchMyBookingRequestsRouter from './routes/fetchMyBookingRequestsRoutes.js';
+import coordinatorDashboardDataRouter from './routes/coordinatorDashboardDataRoutes.js';
 
 const app = express();
 const port = 3000;
@@ -49,6 +51,7 @@ import Room from './models/admin/facilities/room.js';
 import PendingNotification from './models/admin/pendingNotification.js';
 import RespondedNotification from './models/admin/respondedNotification.js';
 import Booking from './models/admin/booking.js';
+
 
 
 //middlewares
@@ -99,6 +102,10 @@ app.use("/coordinatorPageLogout", coordinatorPageLogoutRouter)
 app.use("/fetchRespondedNotifications", fetchRespondedNotificationsRouter)
 app.use("/markAsRead", markAsReadRouter)
 app.use("/fetchMyBookings", fetchMyBookingsRouter)
+app.use("/bookRoomRequest", bookRoomRequestRouter)
+app.use("/fetchMyBookingRequests", fetchMyBookingRequestsRouter)
+app.use("/fetchCoordinatorDashboardData", coordinatorDashboardDataRouter  )
+
 
 
 

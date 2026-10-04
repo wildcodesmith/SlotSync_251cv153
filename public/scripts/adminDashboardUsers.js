@@ -1,5 +1,43 @@
 const sectionContent = document.querySelector("#sectionContent")
 
+//show users
+export const showUsers = async () => {
+
+    sectionContent.innerHTML = ""
+
+    createUsersSection()
+
+    const response = await fetch("/fetchUsers")
+    const data = await response.json()
+
+    //if no data is present
+    if (data.length === 0) {
+        sectionContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center py-20">
+
+            <h2 class="text-2xl font-bold">
+                No Users 
+            </h2>
+
+            <p class="mt-2 text-light-white/60">
+                No users are there
+            </p>
+
+        </div>
+    `;
+    }
+
+    if (response.ok) {
+
+        data.forEach(user => {
+            createUserCard(user)
+        })
+
+    } else {
+        console.log(data)
+    }
+}
+
 // Create Users section
 export const createUsersSection = () => {
 
@@ -118,7 +156,7 @@ export const createUserCard = (user) => {
 
     //deletion of user 
     const deleteUserBtn = userCard.querySelector(".deleteUserBtn");
-    deleteUserBtn.addEventListener("click",showDeleteConfirmation)
+    deleteUserBtn.addEventListener("click", showDeleteConfirmation)
 }
 
 //delete request confirmation card
@@ -177,20 +215,20 @@ export const showDeleteConfirmation = (e) => {
 }
 
 //deleting user logic
-const deleteUser = async(userId)=>{
-    
+const deleteUser = async (userId) => {
+
 
 
     try {
 
         let options = {
-            method : 'DELETE',
-            headers : {
-               "Content-Type" :  'application/json' 
+            method: 'DELETE',
+            headers: {
+                "Content-Type": 'application/json'
             },
-            body : JSON.stringify({userId : userId})
+            body: JSON.stringify({ userId: userId })
         }
-        const response = await fetch("deleteUser",options);
+        const response = await fetch("deleteUser", options);
 
         const data = await response.json();
 
@@ -248,23 +286,3 @@ export const filterUsers = async () => {
     }
 }
 
-//show users
-export const showUsers = async () => {
-
-    sectionContent.innerHTML = ""
-
-    createUsersSection()
-
-    const response = await fetch("/fetchUsers")
-    const data = await response.json()
-
-    if (response.ok) {
-
-        data.forEach(user => {
-            createUserCard(user)
-        })
-
-    } else {
-        console.log(data)
-    }
-}

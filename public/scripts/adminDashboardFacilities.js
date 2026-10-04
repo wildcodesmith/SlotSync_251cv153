@@ -3,7 +3,7 @@ const facilites = document.querySelector("#facilites");
 
 
 //Facilites nav bar
-export const showFacilites = async  () => {
+export const showFacilites = async () => {
 
 
     //clear the section content
@@ -14,6 +14,23 @@ export const showFacilites = async  () => {
     //fetch data from database
     let response = await fetch('/fetchBuildingInfo')
     let data = await response.json();
+
+    //if no data is present
+    if (data.length === 0) {
+        sectionContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center py-20">
+
+            <h2 class="text-2xl font-bold">
+                No Facilities
+            </h2>
+
+            <p class="mt-2 text-light-white/60">
+                No facilities are there
+            </p>
+
+        </div>
+    `;
+    }
 
     const buildings = data;
     buildings.forEach(building => {
@@ -181,14 +198,14 @@ const getfacilityRooms = async (buildingId, buildingName) => {
 
     console.log(data)
 
-    // show all rooms in the building
-    ShowRoomsSection(buildingId,buildingName);
+    // show all rooms in the building => rooms container + nav bar => complete room page
+    ShowRoomsSection(buildingId, buildingName);
 
 
-    //add rooms container
-    addRoomsContianer()
+    //add rooms container => container to contain rooms 
+    addRoomsContainer()
 
-    //create  room to add to the rooms container
+    //create  room to add to the rooms container => individual rooms
     let rooms = data
     rooms.forEach((room) => {
 
@@ -198,7 +215,7 @@ const getfacilityRooms = async (buildingId, buildingName) => {
 }
 
 //show rooms in the building
-const ShowRoomsSection = (buildingId,buildingName) => {
+const ShowRoomsSection = (buildingId, buildingName) => {
 
     sectionContent.innerHTML = "";
 
@@ -543,7 +560,7 @@ const postNewRoom = async (e, buildingId, wrapper) => {
     }
 };
 
-const addRoomsContianer = () => {
+const addRoomsContainer = () => {
 
 
     const roomPage = document.querySelector("#roomPage")
@@ -722,6 +739,7 @@ export const deleteRoomFunc = async (roomId, deleteConfirmationCard) => {
 
 };
 
+//form to edit room info
 export const showEditRoomForm = (e, room) => {
     e.preventDefault();
 
@@ -891,6 +909,7 @@ export const showEditRoomForm = (e, room) => {
 
 }
 
+//close form to edit room
 const closeRoomEditForm = () => {
     const editRoomFormWrapper = document.querySelector("#editRoomFormWrapper");
     editRoomFormWrapper.remove()

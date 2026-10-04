@@ -24,6 +24,25 @@ export const showNotifications = async () => {
     const response = await fetch("/fetchRespondedNotifications")
     const data = await response.json()
 
+    //if no data is present :> no notifications are there
+    if (data.length === 0) {
+        sectionContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center py-20">
+
+            <h2 class="text-2xl font-bold">
+                No Notifications
+            </h2>
+
+            <p class="mt-2 text-light-white/60">
+                 No notifications are there
+            </p>
+
+        </div>
+    `;
+
+        return;
+    }
+
     if (response.ok) {
 
         data.forEach(notification => {
@@ -35,13 +54,17 @@ export const showNotifications = async () => {
         console.log(data)
 
     }
- 
+
 }
- 
+
 
 //creating notification card
 
 const createNotification = (notification) => {
+
+
+
+
 
     const notificationsContainer = document.querySelector("#notificationsContainer")
 
@@ -68,11 +91,11 @@ const createNotification = (notification) => {
 
             <span class="px-3 py-1 rounded-xl border
                 ${notification.status === "approved"
-                    ? "border-green-500 text-green-600"
-                    : notification.status === "rejected"
-                        ? "border-red-500 text-red-600"
-                        : "border-yellow-500 text-yellow-600"
-                }">
+            ? "border-green-500 text-green-600"
+            : notification.status === "rejected"
+                ? "border-red-500 text-red-600"
+                : "border-yellow-500 text-yellow-600"
+        }">
 
                 ${notification.status}
 
@@ -122,17 +145,20 @@ const createNotification = (notification) => {
 }
 
 //mark as read :>  request will send to server to remove the message from responded message database and move it to bookings database
-const markAsRead = async (notificationId)=>{
+const markAsRead = async (notificationId) => {
     let options = {
-        method : 'POST',
-        headers : {
-            'Content-Type' : "application/json",
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json",
 
         },
-        body : JSON.stringify({notificationId : notificationId})
+        body: JSON.stringify({ notificationId: notificationId })
     }
 
-    let response = await fetch("/markAsRead",options)
+    let response = await fetch("/markAsRead", options)
     let data = await response.json();
     console.log(data)
+
+    //refreshing  notification section
+    showNotifications();
 }

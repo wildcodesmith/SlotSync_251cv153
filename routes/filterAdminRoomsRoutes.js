@@ -1,5 +1,5 @@
 import express from "express";
-import requiredRole from "../controllers/middlewares/requireRole.js";
+// import requiredRole from "../controllers/middlewares/requireRole.js";
 import verifyToken from "../controllers/middlewares/verifyToken.js";
 
 
@@ -7,6 +7,6 @@ import { filterAdminRoomsController } from "../controllers/filterAdminRoomsContr
 
 const filterAdminRoomsRouter = express.Router();
 
-filterAdminRoomsRouter.post("/",verifyToken,requiredRole("admin"),filterAdminRoomsController);
+filterAdminRoomsRouter.post("/",verifyToken,filterAdminRoomsController);
 
 export default filterAdminRoomsRouter;

@@ -58,18 +58,21 @@ export const showMyBookings = async () => {
         }
 
 
+        //if no data is present
         if (data.length === 0) {
+            sectionContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center py-20">
 
-            bookingsContainer.innerHTML = `
+            <h2 class="text-2xl font-bold">
+                No bookings 
+            </h2>
 
-                <p class="text-center text-lg py-10">
-                    No bookings found.
-                </p>
+            <p class="mt-2 text-light-white/60">
+                No bookings are there
+            </p>
 
-            `;
-
-            return;
-
+        </div>
+    `;
         }
 
 
@@ -122,7 +125,7 @@ const createBookingCard = (booking) => {
 
     const userEmail = booking.user.userEmail || "Unknown Email";
 
-    const roomName =booking.room.roomName || "Unknown Room";
+    const roomName = booking.room.roomName || "Unknown Room";
 
     const buildingName = booking.building?.buildingName || "Unknown Building";
 
@@ -137,11 +140,11 @@ const createBookingCard = (booking) => {
 
             <span class="px-3 py-1 rounded-xl border
                 ${booking.status === "approved"
-                    ? "border-green-500 text-green-600"
-                    : booking.status === "rejected"
-                        ? "border-red-500 text-red-600"
-                        : "border-yellow-500 text-yellow-600"
-                }">
+            ? "border-green-500 text-green-600"
+            : booking.status === "rejected"
+                ? "border-red-500 text-red-600"
+                : "border-yellow-500 text-yellow-600"
+        }">
 
                 ${booking.status}
 
@@ -182,16 +185,15 @@ const createBookingCard = (booking) => {
                 ${booking.startTime} - ${booking.endTime}
             </p>
 
-            ${
-                booking.responseMessage
-                    ? `
+            ${booking.responseMessage
+            ? `
                         <p>
                             <strong>Response:</strong>
                             ${booking.responseMessage}
                         </p>
                     `
-                    : ""
-            }
+            : ""
+        }
 
         </div>
 

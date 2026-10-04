@@ -1,6 +1,6 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import 'dotenv/config';
+import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 
 //importing routers
@@ -49,7 +49,7 @@ import studentPageLogoutRouter from './routes/studentPageLogoutRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURI = process.env.MONGO_URI;
-
+console.log(mongoURI)
 //mongoose database setup 
 // mongoose.connect(process.env.MONGOOSE_STRING)
 try {
@@ -61,7 +61,6 @@ try {
 }
 
 
-connectDB();
 import Account from './models/account.js';
 import Building from './models/admin/facilities/building.js';
 import Room from './models/admin/facilities/room.js';

@@ -3,11 +3,6 @@
 //bcrypt
 import 'dotenv/config';
 
-//moongoose setup
-import mongoose from 'mongoose';
-await mongoose.connect(process.env.MONGOOSE_STRING)
-import Account from '../models/account.js';
-
 export const dashboardDataFetchingFunc = async (req, res) => {
     try {
         

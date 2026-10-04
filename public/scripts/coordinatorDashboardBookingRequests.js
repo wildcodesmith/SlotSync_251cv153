@@ -32,22 +32,7 @@ const createBookingRequestCards = (requests) => {
 
     sectionContent.innerHTML = "";
 
-    if (requests.length === 0) {
-
-        sectionContent.innerHTML = `
-            <div class="text-center p-10">
-                <h2 class="text-2xl font-bold">
-                    No pending booking requests
-                </h2>
-
-                <p class="mt-2">
-                    You don't have any booking requests waiting for approval.
-                </p>
-            </div>
-        `;
-
-        return;
-    }
+   
 
 
     requests.forEach((request) => {

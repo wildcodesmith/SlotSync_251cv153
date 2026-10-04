@@ -49,7 +49,7 @@ export const showBookings = async () => {
 
         const data = await response.json();
 
-
+        console.log(data)
         if (!response.ok) {
 
             console.log(data);
@@ -57,28 +57,10 @@ export const showBookings = async () => {
 
         }
 
-
-         //if no data is present
-    if (data.length === 0) {
-        sectionContent.innerHTML = `
-        <div class="flex flex-col items-center justify-center text-center py-20">
-
-            <h2 class="text-2xl font-bold">
-                No Bookings 
-            </h2>
-
-            <p class="mt-2 text-light-white/60">
-                No bookings are there
-            </p>
-
-        </div>
-    `;
-
-        return;
-    }
-
-
+            console.log("he")
+        
         data.forEach(booking => {
+ 
 
             createBookingCard(booking);
 
@@ -106,6 +88,7 @@ export const showBookings = async () => {
 // Create individual booking card
 const createBookingCard = (booking) => {
 
+
     const bookingsContainer = document.querySelector("#bookingsContainer");
 
 
@@ -122,7 +105,8 @@ const createBookingCard = (booking) => {
         "gap-3"
     );
 
-    console.log(booking)
+
+
     const userName = booking.user.userName || "Unknown User";
 
     const userEmail = booking.user.userEmail || "Unknown Email";

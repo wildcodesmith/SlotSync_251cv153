@@ -24,22 +24,7 @@ export const showNotifications = async () => {
     const response = await fetch("/fetchPendingNotifications")
     const data = await response.json()
 
-         //if no data is present
-    if (data.length === 0) {
-        sectionContent.innerHTML = `
-        <div class="flex flex-col items-center justify-center text-center py-20">
-
-            <h2 class="text-2xl font-bold">
-                No Notifications 
-            </h2>
-
-            <p class="mt-2 text-light-white/60">
-                No Notifications are there
-            </p>
-
-        </div>
-    `;
-    }
+       
     if (response.ok) {
 
         data.forEach(notification => {

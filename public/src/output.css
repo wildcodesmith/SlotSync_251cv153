@@ -224,9 +224,6 @@
   .z-50 {
     z-index: 50;
   }
-  .col-span-full {
-    grid-column: 1 / -1;
-  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -283,9 +280,6 @@
   }
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
-  }
-  .mb-10 {
-    margin-bottom: calc(var(--spacing) * 10);
   }
   .mb-12 {
     margin-bottom: calc(var(--spacing) * 12);
@@ -843,9 +837,6 @@
   @media (width >= 64rem) {
     .lg\:w-7\/10 {
       width: calc(7 / 10 * 100%);
-    }
-    .lg\:grid-cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .lg\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));

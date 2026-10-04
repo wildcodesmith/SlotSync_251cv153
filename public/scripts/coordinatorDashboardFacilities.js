@@ -16,22 +16,7 @@ export const showFacilites = async () => {
     let response = await fetch('/fetchBuildingInfo')
     let data = await response.json();
 
-    //if no data is present
-    if (data.length === 0) {
-        sectionContent.innerHTML = `
-        <div class="flex flex-col items-center justify-center text-center py-20">
 
-            <h2 class="text-2xl font-bold">
-                No Facilites 
-            </h2>
-
-            <p class="mt-2 text-light-white/60">
-                No facilities are there
-            </p>
-
-        </div>
-    `;
-    }
 
     const buildings = data;
     buildings.forEach(building => {

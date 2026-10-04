@@ -48,9 +48,20 @@ import studentPageLogoutRouter from './routes/studentPageLogoutRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const mongoURI = process.env.MONGO_URI;
 
 //mongoose database setup 
-mongoose.connect(process.env.MONGOOSE_STRING)
+// mongoose.connect(process.env.MONGOOSE_STRING)
+try {
+  await mongoose.connect(mongoURI);
+  console.log('Successfully connected to MongoDB Atlas');
+} catch (err) {
+  console.error('MongoDB connection error:', err);
+  process.exit(1); // Stop app execution if DB fails to connect
+}
+
+
+connectDB();
 import Account from './models/account.js';
 import Building from './models/admin/facilities/building.js';
 import Room from './models/admin/facilities/room.js';

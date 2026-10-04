@@ -1,5 +1,5 @@
 //handles the api request fired by dashboard page to fetch the dashboard data as per role
-
+import Account from '../models/account.js';
 //bcrypt
 import 'dotenv/config';
 

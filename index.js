@@ -49,7 +49,6 @@ import studentPageLogoutRouter from './routes/studentPageLogoutRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURI = process.env.MONGO_URI;
-console.log(mongoURI)
 //mongoose database setup 
 // mongoose.connect(process.env.MONGOOSE_STRING)
 try {

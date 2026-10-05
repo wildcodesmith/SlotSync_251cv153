@@ -10,7 +10,7 @@ const facilites = document.querySelector("#facilites")
 import { showAccount } from "./studentAccountSection.js"
 
 
-import { showFacilites } from "./coordinatorDashboardFacilities.js"
+import { showFacilites } from "./studentFacilities.js"
 
 import { showDashboard } from "./studentDashboardSection.js"
 

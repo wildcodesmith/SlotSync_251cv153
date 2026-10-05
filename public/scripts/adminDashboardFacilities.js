@@ -58,6 +58,7 @@ export const createFacilitiesSection = () => {
                     <option value="auditorium">Auditorium</option>
                     <option value="lhc">LHC</option>
                     <option value="administrative">Administrative</option>
+                             <option value="academic">Academic</option>
                     <option value="department">Department</option>
                     <option value="library">Library</option>
                     <option value="lab">Lab</option>

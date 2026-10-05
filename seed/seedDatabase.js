@@ -9,65 +9,60 @@ import Booking from "../models/admin/booking.js";
 import PendingNotification from "../models/admin/pendingNotification.js";
 import RespondedNotification from "../models/admin/respondedNotification.js";
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/slotsyncs";
-
-import mongoose from "mongoose";
-import Building from "./models/admin/facilities/building.js";
-import Room from "./models/admin/facilities/room.js";
-
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/slotsync";
 
 const buildingsData = [
     {
         buildingName: "CIDS",
-        buildingType: "Academic"
+        buildingType: "academic"
     },
     {
         buildingName: "LHC-A",
-        buildingType: "Academic"
+        buildingType: "lhc"
     },
     {
         buildingName: "LHC-C",
-        buildingType: "Academic"
+        buildingType: "lhc"
     },
     {
         buildingName: "LHC-D",
-        buildingType: "Academic"
+        buildingType: "lhc"
     },
     {
         buildingName: "CENTRAL LIBRARY",
-        buildingType: "Library"
+        buildingType: "library"
     },
     {
         buildingName: "E-LIBRARY",
-        buildingType: "Library"
+        buildingType: "library"
     },
     {
         buildingName: "MAIN BUILDING (ADMINISTRATIVE)",
-        buildingType: "Administrative"
+        buildingType: "administrative"
     },
     {
         buildingName: "CIVIL DEPARTMENT",
-        buildingType: "Academic"
+        buildingType: "department"
     },
     {
         buildingName: "MECHANICAL DEPARTMENT",
-        buildingType: "Academic"
+        buildingType: "department"
     },
     {
         buildingName: "CS DEPARTMENT",
-        buildingType: "Academic"
+        buildingType: "department"
     },
     {
         buildingName: "PHYSICS LABORATORY",
-        buildingType: "Laboratory"
+        buildingType: "lab"
     },
     {
         buildingName: "CHEMISTRY LABORATORY",
-        buildingType: "Laboratory"
+        buildingType: "lab"
     },
     {
         buildingName: "SJA",
-        buildingType: "Auditorium"
+        buildingType: "auditorium"
     }
 ];
 
@@ -76,7 +71,7 @@ const roomsData = {
         {
             roomName: "LH-101",
             capacity: 120,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -85,7 +80,7 @@ const roomsData = {
         {
             roomName: "LH-102",
             capacity: 120,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -94,7 +89,7 @@ const roomsData = {
         {
             roomName: "CR-101",
             capacity: 60,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -103,7 +98,7 @@ const roomsData = {
         {
             roomName: "CR-102",
             capacity: 60,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -115,7 +110,7 @@ const roomsData = {
         {
             roomName: "LH-A101",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -124,7 +119,7 @@ const roomsData = {
         {
             roomName: "LH-A102",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -133,7 +128,7 @@ const roomsData = {
         {
             roomName: "CR-A101",
             capacity: 70,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -142,7 +137,7 @@ const roomsData = {
         {
             roomName: "CR-A102",
             capacity: 70,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -154,7 +149,7 @@ const roomsData = {
         {
             roomName: "LH-C101",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -163,7 +158,7 @@ const roomsData = {
         {
             roomName: "LH-C102",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -172,7 +167,7 @@ const roomsData = {
         {
             roomName: "CR-C101",
             capacity: 70,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -184,7 +179,7 @@ const roomsData = {
         {
             roomName: "LH-D101",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -193,7 +188,7 @@ const roomsData = {
         {
             roomName: "LH-D102",
             capacity: 180,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -202,7 +197,7 @@ const roomsData = {
         {
             roomName: "CR-D101",
             capacity: 70,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -214,20 +209,22 @@ const roomsData = {
         {
             roomName: "LIB-HALL-101",
             capacity: 100,
-            roomType: "Study Hall",
+            roomType: "seminar",
             operatingHours: {
                 start: "08:00",
                 end: "20:00"
-            }
+            },
+            status: "maintenance"
         },
         {
             roomName: "LIB-SEMINAR-101",
             capacity: 50,
-            roomType: "Seminar Hall",
+            roomType: "seminar",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
-            }
+            },
+            status: "available"
         }
     ],
 
@@ -235,7 +232,7 @@ const roomsData = {
         {
             roomName: "ELIB-101",
             capacity: 80,
-            roomType: "Computer Lab",
+            roomType: "seminar",
             operatingHours: {
                 start: "08:00",
                 end: "20:00"
@@ -244,7 +241,7 @@ const roomsData = {
         {
             roomName: "ELIB-102",
             capacity: 80,
-            roomType: "Computer Lab",
+            roomType: "seminar",
             operatingHours: {
                 start: "08:00",
                 end: "20:00"
@@ -256,16 +253,17 @@ const roomsData = {
         {
             roomName: "CR-M101",
             capacity: 50,
-            roomType: "Meeting Room",
+            roomType: "classroom",
             operatingHours: {
                 start: "09:00",
                 end: "17:00"
-            }
+            },
+            status: "unavailable"
         },
         {
             roomName: "SEM-M101",
             capacity: 80,
-            roomType: "Seminar Hall",
+            roomType: "seminar",
             operatingHours: {
                 start: "09:00",
                 end: "17:00"
@@ -277,16 +275,17 @@ const roomsData = {
         {
             roomName: "LH-CIV101",
             capacity: 100,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
-            }
+            },
+            status: "maintanance"
         },
         {
             roomName: "CR-CIV101",
             capacity: 60,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -295,7 +294,7 @@ const roomsData = {
         {
             roomName: "CV-LAB-101",
             capacity: 40,
-            roomType: "Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -307,7 +306,7 @@ const roomsData = {
         {
             roomName: "LH-MEC101",
             capacity: 100,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -316,7 +315,7 @@ const roomsData = {
         {
             roomName: "CR-MEC101",
             capacity: 60,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -325,7 +324,7 @@ const roomsData = {
         {
             roomName: "ME-LAB-101",
             capacity: 40,
-            roomType: "Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -334,7 +333,7 @@ const roomsData = {
         {
             roomName: "ME-LAB-102",
             capacity: 40,
-            roomType: "Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -346,7 +345,7 @@ const roomsData = {
         {
             roomName: "LH-CS101",
             capacity: 100,
-            roomType: "Lecture Hall",
+            roomType: "lecture",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -355,7 +354,7 @@ const roomsData = {
         {
             roomName: "CR-CS101",
             capacity: 60,
-            roomType: "Classroom",
+            roomType: "classroom",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -364,16 +363,17 @@ const roomsData = {
         {
             roomName: "CS-LAB-101",
             capacity: 60,
-            roomType: "Computer Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
-            }
+            },
+            status: "maintanance"
         },
         {
             roomName: "CS-LAB-102",
             capacity: 60,
-            roomType: "Computer Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -385,7 +385,7 @@ const roomsData = {
         {
             roomName: "PH-101",
             capacity: 40,
-            roomType: "Physics Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -394,7 +394,7 @@ const roomsData = {
         {
             roomName: "PH-102",
             capacity: 40,
-            roomType: "Physics Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -406,7 +406,7 @@ const roomsData = {
         {
             roomName: "CY-101",
             capacity: 40,
-            roomType: "Chemistry Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -415,7 +415,7 @@ const roomsData = {
         {
             roomName: "CY-102",
             capacity: 40,
-            roomType: "Chemistry Laboratory",
+            roomType: "lab",
             operatingHours: {
                 start: "08:00",
                 end: "18:00"
@@ -427,7 +427,7 @@ const roomsData = {
         {
             roomName: "SJA-AUDITORIUM",
             capacity: 1000,
-            roomType: "Auditorium",
+            roomType: "auditorium",
             operatingHours: {
                 start: "08:00",
                 end: "21:00"
@@ -436,18 +436,17 @@ const roomsData = {
         {
             roomName: "SJA-SEMINAR-HALL",
             capacity: 250,
-            roomType: "Seminar Hall",
+            roomType: "seminar",
             operatingHours: {
                 start: "08:00",
                 end: "20:00"
-            }
+            },
+            status: "unavailable"
         }
+        
     ]
 };
 
-
-
-seedDatabase();
 
 const seedDatabase = async () => {
 
@@ -455,8 +454,7 @@ const seedDatabase = async () => {
 
         // CONNECT TO LOCAL MONGODB
 
-        await mongoose.connect(process.env.MONGO_URI);
-
+        await mongoose.connect(MONGO_URI);
         console.log("Connected to MongoDB");
 
 
@@ -464,7 +462,7 @@ const seedDatabase = async () => {
         // PASSWORD
 
         const hashedPassword = await bcrypt.hash(
-            "password123",
+            "pass123",
             10
         );
 
@@ -528,7 +526,7 @@ const seedDatabase = async () => {
                 userName: "Convenor User",
                 userEmail: "convenor@slotsync.com",
                 password: hashedPassword,
-                userBranch: "Computer Science",
+                userBranch: "Information Technology",
                 userRole: "convenor"
             });
 
@@ -551,7 +549,7 @@ const seedDatabase = async () => {
                 userName: "Student User",
                 userEmail: "student@slotsync.com",
                 password: hashedPassword,
-                userBranch: "Computer Science",
+                userBranch: "Civil Engineering",
                 userRole: "student"
             });
 
@@ -578,7 +576,7 @@ const seedDatabase = async () => {
                 },
                 buildingData,
                 {
-                    new: true,
+                    returnDocument: "after",
                     upsert: true,
                     setDefaultsOnInsert: true
                 }
@@ -607,7 +605,7 @@ const seedDatabase = async () => {
                         building: buildingId
                     },
                     {
-                        new: true,
+                        returnDocument: "after",
                         upsert: true,
                         setDefaultsOnInsert: true
                     }

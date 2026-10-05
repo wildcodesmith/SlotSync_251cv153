@@ -500,7 +500,7 @@ const seedDatabase = async () => {
         if (!faculty) {
 
             faculty = await Account.create({
-                userName: "Faculty User",
+                userName: "Faculty",
                 userEmail: "faculty@slotsync.com",
                 password: hashedPassword,
                 userBranch: "Computer Science",
@@ -523,7 +523,7 @@ const seedDatabase = async () => {
         if (!convenor) {
 
             convenor = await Account.create({
-                userName: "Convenor User",
+                userName: "Convenor",
                 userEmail: "convenor@slotsync.com",
                 password: hashedPassword,
                 userBranch: "Information Technology",
@@ -546,7 +546,7 @@ const seedDatabase = async () => {
         if (!student) {
 
             student = await Account.create({
-                userName: "Student User",
+                userName: "Student",
                 userEmail: "student@slotsync.com",
                 password: hashedPassword,
                 userBranch: "Civil Engineering",
